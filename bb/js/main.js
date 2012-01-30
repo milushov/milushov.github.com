@@ -1,15 +1,17 @@
+console.profile();
 window.Wine = Backbone.Model.extend({
 	urlRoot: "api/index.json",
+	
 	defaults: {
 		"id": null,
-	    "name":  "",
-	    "grapes":  "",
-	    "country":  "USA",
-	    "region":  "California",
-	    "year":  "",
-	    "description":  "",
-	    "picture":  ""
-	  }
+    "name":  "",
+    "grapes":  "",
+    "country":  "USA",
+    "region":  "California",
+    "year":  "",
+    "description":  "",
+    "picture":  ""
+	}
 });
 l(window.Wine,'Wine');
 
@@ -159,26 +161,26 @@ window.HeaderView = Backbone.View.extend({
 	
 	template: _.template($('#header').html()),
 
-    initialize: function() {
-    	l(this,'HeaderView initialize');
-			this.render();
-    },
+  initialize: function() {
+  	l(this,'HeaderView initialize');
+		this.render();
+  },
 
-    render: function(eventName) {
-    	l(this,'HeaderView render');
-			$(this.el).html(this.template());
-			return this;
-    },
+  render: function(eventName) {
+  	l(this,'HeaderView render');
+		$(this.el).html(this.template());
+		return this;
+  },
 
-    events: {
-			"click .new": "newWine"
-    },
+  events: {
+		"click .new": "newWine"
+  },
 
-newWine: function(event) {
-	l(this,'HeaderView newWine');
-	app.navigate("wines/new", true);
-	return false;
-}
+	newWine: function(event) {
+		l(this,'HeaderView newWine');
+		app.navigate("wines/new", true);
+		return false;
+	}
 });
 
 var AppRouter = Backbone.Router.extend({
@@ -214,7 +216,7 @@ var AppRouter = Backbone.Router.extend({
 			this.requestedId = id;
 			this.list();
 		}
-  	},
+  },
 
 	newWine: function() {
 		l(this,'AppRouter newWine');
@@ -235,3 +237,5 @@ function l(val, msg){
 var app = new AppRouter();
 Backbone.history.start();
 var header = new HeaderView();
+
+console.profileEnd();
