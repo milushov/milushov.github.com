@@ -30,15 +30,13 @@ window.WineListView = Backbone.View.extend({
 	el: $('#wineList'),
 
   initialize: function() {
-  	l(this,'WineListItemView initialize');
 		this.model.bind("reset", this.render, this); 	
 		this.model.bind("add", function(wine) {
-			$('#wineList').append(new WineListItemView({model: wine}).render().el);
+			$('#wineList').append( new WineListItemView({model: wine}).render().el );
 		});
   },
 
   render: function(eventName) {
-  	l(this,'WineListItemView render');
 		_.each( this.model.models, function(wine) {
 	    $(this.el).append(new WineListItemView({model: wine}).render().el);
 		}, this);
@@ -54,22 +52,19 @@ window.WineListItemView = Backbone.View.extend({
 
 	tagName: "li",
 
-	template: _.template($('#wine-list-item').html()),
+	template: _.template( $('#wine-list-item').html() ),
 
-    initialize: function() {
-    	l(this,'WineListItemView initialize');
-			this.model.bind("change", this.render, this);
-			this.model.bind("destroy", this.close, this);
-    },
+  initialize: function() {
+		this.model.bind("change", this.render, this);
+		this.model.bind("destroy", this.close, this);
+  },
 
-    render: function(eventName) {
-    	l(this,'WineListItemView render');
-			$(this.el).html(this.template(this.model.toJSON()));
-			return this;
-    },
+  render: function(eventName) {
+		$(this.el).html(this.template(this.model.toJSON()));
+		return this;
+  },
 
 	close: function() {
-		l(this,'WineListItemView close');
 		$(this.el).unbind();
 		$(this.el).remove();
 	}
@@ -85,12 +80,10 @@ window.WineView = Backbone.View.extend({
 	template: _.template($('#wine-details').html()),
 
   initialize: function() {
-  	l(this,'WineView initialize');
 		this.model.bind("change", this.render, this);
   },
 
   render: function(eventName) {
-  	l(this,'WineView render');
 		$(this.el).html( this.template(this.model.toJSON()) );
 		return this;
   },
@@ -102,7 +95,6 @@ window.WineView = Backbone.View.extend({
   },
 
   change: function(event) {
-  	l(this,'WineView change');
 		var target = event.target;
 		console.log('changing ' + target.id + ' from: ' + target.defaultValue + ' to: ' + target.value);
 		// You could change your model on the spot, like this:
@@ -112,7 +104,6 @@ window.WineView = Backbone.View.extend({
   },
 
 	saveWine: function() {
-		l(this,'WineView saveWine');
 		this.model.set({
 			name: $('#name').val(),
 			grapes: $('#grapes').val(),
@@ -126,7 +117,6 @@ window.WineView = Backbone.View.extend({
 			var self = this;
 			app.wineList.create(this.model, {
 				success: function() {
-					l(this,'WineView saveWine:success');
 					app.navigate('wines/'+self.model.id, false);
 				}
 			});
@@ -138,7 +128,6 @@ window.WineView = Backbone.View.extend({
 	},
 	
 	deleteWine: function() {
-		l(this,'WineView deleteWine');
 		this.model.destroy({
 			success: function() {
 				alert('Wine deleted successfully');
@@ -149,7 +138,6 @@ window.WineView = Backbone.View.extend({
 	},
 
 	close: function() {
-		l(this,'WineView close');
 		$(this.el).unbind();
 		$(this.el).empty();
 	}
@@ -162,12 +150,10 @@ window.HeaderView = Backbone.View.extend({
 	template: _.template($('#header').html()),
 
   initialize: function() {
-  	l(this,'HeaderView initialize');
 		this.render();
   },
 
   render: function(eventName) {
-  	l(this,'HeaderView render');
 		$(this.el).html(this.template());
 		return this;
   },
@@ -177,7 +163,6 @@ window.HeaderView = Backbone.View.extend({
   },
 
 	newWine: function(event) {
-		l(this,'HeaderView newWine');
 		app.navigate("wines/new", true);
 		return false;
 	}
@@ -192,12 +177,10 @@ var AppRouter = Backbone.Router.extend({
 	},
 
 	list: function() {
-		l(this,'AppRouter list');
     this.wineList = new WineCollection();
 		var self = this;
 		this.wineList.fetch({
 			success: function() {
-				l(this,'AppRouter list:success');
 		    self.wineListView = new WineListView( {model: self.wineList} );
 				self.wineListView.render();
 				if (self.requestedId) self.wineDetails(self.requestedId);
@@ -205,8 +188,13 @@ var AppRouter = Backbone.Router.extend({
 		});
   	},
 
+	newWine: function() {
+		if (app.wineView) app.wineView.close();
+			app.wineView = new WineView({model: new Wine()});
+		app.wineView.render();
+	},
+
 	wineDetails: function(id) {
-		l(this,'AppRouter wineDetails');
 		if (this.wineList){
 			this.wine = this.wineList.get(id);
 			if (this.wineView) this.wineView.close();
@@ -216,15 +204,7 @@ var AppRouter = Backbone.Router.extend({
 			this.requestedId = id;
 			this.list();
 		}
-  },
-
-	newWine: function() {
-		l(this,'AppRouter newWine');
-		if (app.wineView) app.wineView.close();
-			app.wineView = new WineView({model: new Wine()});
-		app.wineView.render();
-	}
-
+  }
 });
 
 function l(val, msg){
