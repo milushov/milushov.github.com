@@ -17,5 +17,7 @@
 </noscript>
 
 <script type="text/javascript">
-  alert(location.search.substr(1))
+  if(location.search.split('&').map(function(el){ return el.split('=')[0] }).indexOf('api_url') !== -1) {
+    location.href = '/';
+  }
 </script>
