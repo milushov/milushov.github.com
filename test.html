@@ -1,0 +1,36 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+<script>
+  this.getUrlParameters = function() {
+    return (function(a) {
+      var b, i, p;
+      if (a === '' || !a[0]) {
+        return {};
+      }
+      b = {};
+      i = 0;
+      while (i < a.length) {
+        p = a[i].split("=");
+        if (p.length !== 2) {
+          continue;
+        }
+        b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        ++i;
+      }
+      return b;
+    })(window.location.search.substr(1).split("&"));
+  };
+
+  $(function(){
+    var url = 'http://tirabit.flywebstudio.ru/?vk_url=';
+    var params = getUrlParameters();
+
+    if(params['viewer_id']) {
+      vk_url = 'http://vk.com/id' + params['viewer_id']
+      $.getJSON(url + vk_url, null, function(resp) {
+        console.log(resp);
+      });
+    }
+
+  });
+</script>
