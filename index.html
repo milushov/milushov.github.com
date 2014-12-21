@@ -1,23 +1,60 @@
-<style>html,body{margin: 0;background-image: url(bg.jpg);background-position-x: 50%;background-position-y: 50%;}#vk_like {width:100px;height:100px;margin:-50px 0 0 -50px;top:50%;left:50%;position:absolute;}</style>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>
+    @milushov
+  </title>
 
-<script type="text/javascript" src="https://userapi.com/js/api/openapi.js?45"></script><script type="text/javascript">VK.init({apiId: 1111111, onlyWidgets: true});</script>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='icon' href='/favicon.png'>
+  <link rel='stylesheet' href='style.css' type='text/css'>
+</head>
 
-<div id="vk_like"></div>
+  <body>
+    <div class='hero'>
+      <div class='hero-wrapper'>
+        <div class='content'>
+          <h1>@milushov</h1>
+          <p> Professional web developer, maker of nice things.
+          <nav>
+            <ul class='inline-nav'>
+              <li><a href='https://github.com/milushov'>Github</a></li>
+              <li><a href='http://telegram.me/milushov'>Telegram</a></li>
+              <li><a href='https://vk.com/milushov'>VK</a></li>
+              <li><a href='https://twitter.com/milushov'>Twitter</a></li>
+              <li><a href='skype:milushov.r?call'>Skype</a></li>
+              <li><a href='mailto:roma@milushov.ru?subject=yo'>roma@milushov.ru</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
 
-<script type="text/javascript">VK.Widgets.Like("vk_like", {type: "button", height: 20});</script>
+      <div id='vk-like'></div>
+    </div>
+  </body>
+</html>
 
-<div style="display:none;">
-  <script type="text/javascript">(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter10409905 = new Ya.Metrika({id:10409905, enableAll: true, trackHash:true, webvisor:true}); } catch(e) { } }); })(window, "yandex_metrika_callbacks");</script>
+
+<style>
+#vk-like {
+  position: absolute !important;
+  bottom: 40px;
+  right: 10px;
+}
+</style>
+
+<script type='text/javascript' src='https://userapi.com/js/api/openapi.js?45'></script><script type='text/javascript'>VK.init({apiId: 1111111, onlyWidgets: true});</script>
+
+
+<script type='text/javascript'>VK.Widgets.Like('vk-like', {type: 'button', height: 20});</script>
+
+<div style='display:none;'>
+  <script type='text/javascript'>(function(w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter10409905 = new Ya.Metrika({id:10409905, enableAll: true, trackHash:true, webvisor:true}); } catch(e) { } }); })(window, 'yandex_metrika_callbacks');</script>
 </div>
 
-<script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript" defer="defer"></script>
+<script src='//mc.yandex.ru/metrika/watch.js' type='text/javascript' defer='defer'></script>
 
 <noscript>
-  <div><img src="//mc.yandex.ru/watch/10409905" style="position:absolute; left:-9999px;" alt="" /></div>
+  <div><img src='//mc.yandex.ru/watch/10409905' style='position:absolute; left:-9999px;' alt='' /></div>
 </noscript>
-
-<script type="text/javascript">
-  if(location.search.split('&').map(function(el){ return el.split('=')[0] }).indexOf('api_url') !== -1) {
-    location.href = '/';
-  }
-</script>
