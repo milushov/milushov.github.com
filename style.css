@@ -357,7 +357,7 @@ td, th { padding: 0; }
   .col-lg-offset-10 { margin-left: 83.33333%; }
   .col-lg-offset-11 { margin-left: 91.66667%; }
   .col-lg-offset-12 { margin-left: 100%; } }
-.colors-blue-dark, .masthead, .hero, .navbar { background: #039be5; color: #81d4fa; }
+.colors-blue-dark, .masthead, .hero, .navbar { background: url(http://githubuniverse.com/images/gradient-from-black.jpg); color: rgba(255, 255, 255, 0.5); }
 .colors-blue-dark a, .masthead a, .hero a, .navbar a, .colors-blue-dark a:visited, .masthead a:visited, .hero a:visited, .navbar a:visited { color: #eeeeee; }
 .colors-blue-dark a:hover, .masthead a:hover, .hero a:hover, .navbar a:hover { color: #FFF; }
 .colors-blue-dark h1, .masthead h1, .hero h1, .navbar h1 { color: #FFF; }
